@@ -11,14 +11,14 @@ class StreamList extends React.Component {
   listRendered = (id, streamsArray) => {
     return streamsArray.map((streamElement) => {
       return (
-        <div className="item">
+        <div key={streamElement.id} className="item">
           {id === streamElement.userID && (
             <div className="right floated content">
-              <Link to="/streams/edit">
-                <button className="ui button primary">Edit</button>
+              <Link className="ui button primary" to={`/streams/edit/${streamElement.id}`}>
+                Edit
               </Link>
-              <Link to="/streams/delete">
-                <button className="ui button negative">Delete</button>
+              <Link className="ui button negative" to={`/streams/delete/${streamElement.id}`}>
+                Delete
               </Link>
             </div>
           )}

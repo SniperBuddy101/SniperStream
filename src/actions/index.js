@@ -1,5 +1,5 @@
 import streams from "../api/streams";
-
+import history from "../history";
 
 
 
@@ -27,6 +27,7 @@ const createStream = fieldValues => async (dispatch, getState) => {
     type: "CREATE_STREAM",
     payload: {...response.data}
   });
+  history.push("/");
 }
 
 
