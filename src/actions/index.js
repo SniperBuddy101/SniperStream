@@ -51,12 +51,13 @@ const getStream = (id) => async dispatch => {
   });
 }
 
-const editStream = (id, fieldValues) => async dispatch => {
-  const response = await streams.put(`/streams/${id}`, fieldValues);
+const editStream = (id, fieldValues) => async (dispatch) => {
+  const response = await streams.patch(`/streams/${id}`, fieldValues);
   dispatch({
     type: "EDIT_STREAM",
     payload: response.data
   });
+  history.push("/");
 }
 
 const deleteStream = (id) => async dispatch => {
