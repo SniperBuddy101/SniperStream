@@ -14,17 +14,25 @@ class StreamList extends React.Component {
         <div key={streamElement.id} className="item">
           {id === streamElement.userID && (
             <div className="right floated content">
-              <Link className="ui button primary" to={`/streams/edit/${streamElement.id}`}>
+              <Link
+                className="ui button primary"
+                to={`/streams/edit/${streamElement.id}`}
+              >
                 Edit
               </Link>
-              <Link className="ui button negative" to={`/streams/delete/${streamElement.id}`}>
+              <Link
+                className="ui button negative"
+                to={`/streams/delete/${streamElement.id}`}
+              >
                 Delete
               </Link>
             </div>
           )}
           <i className="large middled icon camera" />
           <div className="content">
-            <div className="header">{streamElement.title}</div>
+            <Link className="header" to={`/streams/${streamElement.id}`}>
+              {streamElement.title}
+            </Link>
             {streamElement.description}
           </div>
         </div>
@@ -38,11 +46,16 @@ class StreamList extends React.Component {
         <div className="ui celled list">
           {this.listRendered(this.props.userID, this.props.streams)}
         </div>
-        {(this.props.isSignedIn === true) && <Link to="/streams/create">
-          <button className="ui button green right floated" style={{marginRight: "7px"}}>
-            Create a Stream
-          </button>
-        </Link>}
+        {this.props.isSignedIn === true && (
+          <Link to="/streams/create">
+            <button
+              className="ui button green right floated"
+              style={{ marginRight: "7px" }}
+            >
+              Create a Stream
+            </button>
+          </Link>
+        )}
       </div>
     );
   }
@@ -52,7 +65,7 @@ const mapStateToProps = (state) => {
   return {
     userID: state.authState.userID,
     streams: Object.values(state.streams),
-    isSignedIn: state.authState.isSignedIn
+    isSignedIn: state.authState.isSignedIn,
   };
 };
 
